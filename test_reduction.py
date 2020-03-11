@@ -6,7 +6,7 @@ from noisereduce.utils import int16_to_float32, float32_to_int16
 
 def test_reduce_generated_noise():
     # load data
-    wav_loc = "assets/fish.wav"
+    wav_loc = "assets/coffe-1_2020-03-08_170854361.wav"
     rate, data = wavfile.read(wav_loc)
     data = int16_to_float32(data)
     # add noise
@@ -26,17 +26,16 @@ def test_reduce_generated_noise():
 
 def test_reduce_cafe_noise():
     # load data
-    wav_loc = "assets/fish.wav"
+    wav_loc = "assets/coffe-1_2020-03-08_170854361.wav"
     rate, data = wavfile.read(wav_loc)
     data = int16_to_float32(data)
-    noise_loc = "assets/cafe_short.wav"
+    noise_loc = "assets/coffe-1x_2020-03-08_170932616.wav"
     noise_rate, noise_data = wavfile.read(noise_loc)
     noise_data = int16_to_float32(noise_data)
     # add noise
     snr = 2  # signal to noise ratio
     noise_clip = noise_data / snr
-    audio_clip_cafe = data + noise_clip
-
+    audio_clip_cafe = data
     # reduce noise
     reduced_noise = nr.reduce_noise(
         audio_clip=audio_clip_cafe, noise_clip=noise_clip, verbose=True
@@ -46,16 +45,16 @@ def test_reduce_cafe_noise():
 
 def test_reduce_cafe_noise_tf():
     # load data
-    wav_loc = "assets/fish.wav"
+    wav_loc = "assets/coffe-1_2020-03-08_170854361.wav"
     rate, data = wavfile.read(wav_loc)
     data = int16_to_float32(data)
-    noise_loc = "assets/cafe_short.wav"
+    noise_loc = "assets/coffe-1x_2020-03-08_170932616.wav"
     noise_rate, noise_data = wavfile.read(noise_loc)
     noise_data = int16_to_float32(noise_data)
     # add noise
     snr = 2  # signal to noise ratio
     noise_clip = noise_data / snr
-    audio_clip_cafe = data + noise_clip
+    audio_clip_cafe = data
 
     # reduce noise
     reduced_noise = nr.reduce_noise(
